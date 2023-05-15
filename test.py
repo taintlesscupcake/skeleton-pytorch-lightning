@@ -38,10 +38,10 @@ if __name__ == "__main__":
     trainer = Trainer(accelerator='gpu',
                       devices="auto")
 
-    network_module = module.SkeletonModule.load_from_checkpoint(
+    network_module = module.DefaultModule.load_from_checkpoint(
         checkpoint_path=args.ckpt)
 
-    data_module = module.SkeletonDataModule(args)
+    data_module = module.DefaultModule(args)
 
     network_module.args = args
 

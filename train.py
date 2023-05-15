@@ -37,8 +37,8 @@ def get_args():
 if __name__ == "__main__":
     args = get_args()
 
-    network_module = module.SkeletonModule(args)
-    data_module = module.SkeletonDataModule(args)
+    network_module = module.DefaultModule(args)
+    data_module = module.DefaultDataModule(args)
 
     if args.ckpt != "":
         network_module.load_state_dict(args.ckpt)

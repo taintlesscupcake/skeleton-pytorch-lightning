@@ -24,9 +24,9 @@
 
 - `train.py`: 모델 학습을 위한 주요 스크립트입니다.
 - `test.py`: 모델 테스트를 위한 주요 스크립트입니다.
-- `module.py`: `SkeletonModule` 및 `SkeletonDataModule` 클래스가 포함되어 있습니다.
-- `model.py`: `SkeletonModel` 클래스가 포함되어 있습니다.
-- `dataloader.py`: `SkeletonDataset` 클래스가 포함되어 있습니다.
+- `module.py`: `DefaultModule` 및 `DefaultDataModule` 클래스가 포함되어 있습니다.
+- `model.py`: `DefaultModel` 클래스가 포함되어 있습니다.
+- `dataloader.py`: `DefaultDataset` 클래스가 포함되어 있습니다.
 - `train.sh`: 학습 스크립트를 실행하기 위한 쉘 스크립트입니다.
 - `test.sh`: 테스트 스크립트를 실행하기 위한 쉘 스크립트입니다.
 
@@ -35,8 +35,8 @@
 먼저 이 저장소를 클론합니다.
 
 ```bash
-git clone https://github.com/taintlesscupcake/skeleton-pytorch-lightning.git
-cd skeleton-pytorch-lightning
+git clone https://github.com/taintlesscupcake/Default-pytorch-lightning.git
+cd Default-pytorch-lightning
 ```
 
 모델을 학습하려면 다음 명령을 실행합니다:
@@ -58,13 +58,13 @@ cd skeleton-pytorch-lightning
 
 특정 사용 사례에 맞게 코드를 사용자 정의하려면 다음 단계를 수행하세요:
 
-1. **`model.py`의 `SkeletonModel` 업데이트**: `SkeletonModel` 클래스를 수정하여 사용자만의 딥러닝 모델을 정의합니다.
+1. **`model.py`의 `DefaultModel` 업데이트**: `DefaultModel` 클래스를 수정하여 사용자만의 딥러닝 모델을 정의합니다.
 
-2. **`dataloader.py`의 `SkeletonDataset` 업데이트**: 사용자의 특정 데이터셋을 로드하기 위해 `SkeletonDataset` 클래스를 수정합니다.
+2. **`dataloader.py`의 `DefaultDataset` 업데이트**: 사용자의 특정 데이터셋을 로드하기 위해 `DefaultDataset` 클래스를 수정합니다.
 
-3. **`module.py`의 `SkeletonModule` 업데이트**: 손실 함수, 최적화 알고리즘 및 학습률 스케줄링을 포함하도록 `SkeletonModule` 클래스를 수정합니다.
+3. **`module.py`의 `DefaultModule` 업데이트**: 손실 함수, 최적화 알고리즘 및 학습률 스케줄링을 포함하도록 `DefaultModule` 클래스를 수정합니다.
 
-4. **`module.py`의 `SkeletonDataModule` 업데이트**: 데이터 증강 및 데이터 분할을 포함하여 데이터 로딩 파이프라인을 설정하기 위해 `SkeletonDataModule` 클래스를 수정합니다.
+4. **`module.py`의 `DefaultDataModule` 업데이트**: 데이터 증강 및 데이터 분할을 포함하여 데이터 로딩 파이프라인을 설정하기 위해 `DefaultDataModule` 클래스를 수정합니다.
 
 5. **`train.py` 및 `test.py` 수정**: 사용자 정의 클래스 및 원하는 학습/테스트 구성과 일치하도록 `train.py`와 `test.py`의 인수와 설정을 조정합니다.
 

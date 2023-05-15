@@ -6,7 +6,7 @@ import os
 def load_image(path):
     return Image.open(path).convert('RGB')
 
-class SkeletonDataset(Dataset):
+class YourDataset(Dataset):
     def __init__(self, mode, data_path, data_files, transform=None):
         # implement your own data
         self.data_path = data_path
@@ -38,3 +38,6 @@ class SkeletonDataset(Dataset):
     
     def __len__(self):
         return len(self.data_files)
+    
+# Replace YourDataset with your own dataset class
+DefaultDataset = YourDataset

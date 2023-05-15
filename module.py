@@ -3,8 +3,8 @@ from typing import Any, List, Union
 from pytorch_lightning import LightningModule, LightningDataModule
 from pytorch_lightning.utilities.types import EPOCH_OUTPUT, STEP_OUTPUT
 import torch
-from dataloader import SkeletonDataset
-from model import SkeletonModel
+from dataloader import DefaultDataset
+from model import DefaultModel
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
@@ -14,12 +14,12 @@ class Evaluator(object):
         self.args = args
 
 
-class SkeletonModule(LightningModule):
+class YourLightningModule(LightningModule):
     def __init__(self, args):
-        super(SkeletonModule, self).__init__()
+        super(YourLightningModule, self).__init__()
         self.args = args
 
-        self.model = SkeletonModel(self.args)
+        self.model = DefaultModel(self.args)
 
         self.evaluator = Evaluator(self.args)
 
@@ -92,9 +92,9 @@ class SkeletonModule(LightningModule):
         return [optimizer], [scheduler]
 
 
-class SkeletonDataModule(LightningDataModule):
+class YourLightningDataModule(LightningDataModule):
     def __init__(self, args):
-        super(SkeletonDataModule, self).__init__()
+        super(YourLightningDataModule, self).__init__()
         self.args = args
 
         def setup(self, stage):
@@ -102,7 +102,7 @@ class SkeletonDataModule(LightningDataModule):
             self.train_dataset = self.set_train_dataset()
             self.val_dataset = self.set_val_dataset()
             self.test_dataset = self.set_test_dataset()
-            
+
         def train_dataloader(self):
             return DataLoader(self.train_dataset, batch_size=self.args.batch_size, num_workers=self.args.num_workers, shuffle=True)
 
@@ -117,7 +117,7 @@ class SkeletonDataModule(LightningDataModule):
             img_path = os.path.join(self.args.data_path, 'train')
             img_files = os.listdir(img_path)
 
-            return SkeletonDataset(
+            return DefaultDataset(
                 mode='train', data_path=img_path, data_files=img_files)
 
         def set_val_dataset(self):
@@ -125,7 +125,7 @@ class SkeletonDataModule(LightningDataModule):
             img_path = os.path.join(self.args.data_path, 'val')
             img_files = os.listdir(img_path)
 
-            return SkeletonDataset(
+            return DefaultDataset(
                 mode='val', data_path=img_path, data_files=img_files)
 
         def set_test_dataset(self):
@@ -133,7 +133,10 @@ class SkeletonDataModule(LightningDataModule):
             img_path = os.path.join(self.args.data_path, 'test')
             img_files = os.listdir(img_path)
 
-            return SkeletonDataset(
+            return DefaultDataset(
                 mode='test', data_path=img_path, data_files=img_files)
 
-        
+
+# Replace YourLightningModule and YourLightningDataModule with your own classes
+DefaultModule = YourLightningModule
+DefaultDataModule = YourLightningDataModule
